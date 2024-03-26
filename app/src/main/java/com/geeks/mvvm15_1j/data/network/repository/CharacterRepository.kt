@@ -1,21 +1,22 @@
 package com.geeks.mvvm15_1j.data.network.repository
 
+import android.graphics.pdf.PdfDocument.Page
 import androidx.lifecycle.MutableLiveData
 import com.geeks.mvvm15_1j.common.Resource
 import com.geeks.mvvm15_1j.data.model.BaseMainResponse
 import com.geeks.mvvm15_1j.data.model.RickAndMortyCharacter
 import com.geeks.mvvm15_1j.data.network.service.ApiService
+import dagger.Provides
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val apiService: ApiService) {
-
-    fun getCharacter(name: String): MutableLiveData<Resource<BaseMainResponse<RickAndMortyCharacter>?>> {
+    fun getCharacter(name: String, page: Int): MutableLiveData<Resource<BaseMainResponse<RickAndMortyCharacter>?>> {
         val liveData = MutableLiveData<Resource<BaseMainResponse<RickAndMortyCharacter>?>>()
         liveData.value = Resource.Loading()
-        apiService.getAllCharacter(name = name).enqueue(object : Callback<BaseMainResponse<RickAndMortyCharacter>?>{
+        apiService.getAllCharacter(name = name, page = page).enqueue(object : Callback<BaseMainResponse<RickAndMortyCharacter>?>{
 
             override fun onResponse(
                 call: Call<BaseMainResponse<RickAndMortyCharacter>?>,

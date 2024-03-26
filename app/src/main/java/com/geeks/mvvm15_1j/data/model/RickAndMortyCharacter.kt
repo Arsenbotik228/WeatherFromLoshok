@@ -1,5 +1,8 @@
 package com.geeks.mvvm15_1j.data.model
 
+import androidx.room.Entity
+
+@Entity
 data class RickAndMortyCharacter(
     val id: Int,
     val name: String,
@@ -7,7 +10,7 @@ data class RickAndMortyCharacter(
     val species: String,
     val type: String,
     val gender: String,
-    val origin: RickAndMortyOrigin,
+    val origin: RickAndMortyOrigin? = null,
     val image: String,
-    val location: RickAndMortyLocation
+    val location: RickAndMortyLocation? = null
 )

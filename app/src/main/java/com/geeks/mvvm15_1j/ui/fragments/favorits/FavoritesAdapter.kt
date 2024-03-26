@@ -1,16 +1,16 @@
-package com.geeks.mvvm15_1j.ui.fragments.characters
+package com.geeks.mvvm15_1j.ui.fragments.favorits
 
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.geeks.mvvm15_1j.data.model.RickAndMortyCharacter
 import com.geeks.mvvm15_1j.databinding.ItemCharactersBinding
+import com.geeks.mvvm15_1j.ui.fragments.characters.CharacterAdapter
 
-class CharacterAdapter(private val click: AddFavorites) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class FavoritesAdapter(private val click: CharacterAdapter.AddFavorites):RecyclerView.Adapter<FavoritesAdapter.CharacterViewHolder>() {
     private var list = listOf<RickAndMortyCharacter>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -27,17 +27,11 @@ class CharacterAdapter(private val click: AddFavorites) : RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         holder.onBind(list[position])
-        holder.itemView.setOnLongClickListener{
-            click.addFavoritesCharacters(list[position])
-            return@setOnLongClickListener true
-
-        }
-
     }
 
 
     class CharacterViewHolder(private val binding: ItemCharactersBinding) :
-        ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(character: RickAndMortyCharacter) {
             binding.itemTvCharacterName.text = character.name
@@ -54,9 +48,5 @@ class CharacterAdapter(private val click: AddFavorites) : RecyclerView.Adapter<C
             }
         }
     }
-    interface AddFavorites{
-        fun addFavoritesCharacters(model:RickAndMortyCharacter){
-
-        }
-    }
 }
+

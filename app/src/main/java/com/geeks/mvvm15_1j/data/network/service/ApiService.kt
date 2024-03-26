@@ -15,5 +15,6 @@ interface ApiService {
         @Query("status") status: String? = null, // Жив или мертв или неизвестно
         @Query("gender") gender: String? = null, // Мужчина или женщина или неизвестно
         @Query("species") species: String? = null, // Человек или пришелец
+        @Query("page") page: Int? = 1 //По странице
     ): Call<BaseMainResponse<RickAndMortyCharacter>>
 }
